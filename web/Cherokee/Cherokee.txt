@@ -1,0 +1,93 @@
+#
+#  Cherokee:  U+13A0 - U+13F4
+#
+#  Cherokee has:
+#    13 syllabic classes in 6 forms.
+#    16 consonant bases in 13 vowels.
+#
+#
+13A0;  CHEROKEE LETTER A;  13A0;  1;  ;  a;  ;  
+13A1;  CHEROKEE LETTER E;  13A0;  2;  ;  e;  ;  
+13A2;  CHEROKEE LETTER I;  13A0;  3;  ;  i;  ;  
+13A3;  CHEROKEE LETTER O;  13A0;  4;  ;  o;  ;  
+13A4;  CHEROKEE LETTER U;  13A0;  5;  ;  u;  ;  
+13A5;  CHEROKEE LETTER V;  13A0;  6;  ;  <028C>;  ;  
+13A6;  CHEROKEE LETTER GA;  13A6;  1;  g;  a;  ;  
+13A7;  CHEROKEE LETTER KA;  13A6;  1;  k;  a;  ;  
+13A8;  CHEROKEE LETTER GE;  13A6;  2;  g;  e;  ;  
+13A9;  CHEROKEE LETTER GI;  13A6;  3;  g;  i;  ;  
+13AA;  CHEROKEE LETTER GO;  13A6;  4;  g;  o;  ;  
+13AB;  CHEROKEE LETTER GU;  13A6;  5;  g;  u;  ;  
+13AC;  CHEROKEE LETTER GV;  13A6;  6;  g;  <028C>;  ;  
+13AD;  CHEROKEE LETTER HA;  13AD;  1;  h;  a;  ;  
+13AE;  CHEROKEE LETTER HE;  13AD;  2;  h;  e;  ;  
+13AF;  CHEROKEE LETTER HI;  13AD;  3;  h;  i;  ;  
+13B0;  CHEROKEE LETTER HO;  13AD;  4;  h;  o;  ;  
+13B1;  CHEROKEE LETTER HU;  13AD;  5;  h;  u;  ;  
+13B2;  CHEROKEE LETTER HV;  13AD;  6;  h;  <028C>;  ;  
+13B3;  CHEROKEE LETTER LA;  13B3;  1;  l;  a;  ;  
+13B4;  CHEROKEE LETTER LE;  13B3;  2;  l;  e;  ;  
+13B5;  CHEROKEE LETTER LI;  13B3;  3;  l;  i;  ;  
+13B6;  CHEROKEE LETTER LO;  13B3;  4;  l;  o;  ;  
+13B7;  CHEROKEE LETTER LU;  13B3;  5;  l;  u;  ;  
+13B8;  CHEROKEE LETTER LV;  13B3;  6;  l;  <028C>;  ;  
+13B9;  CHEROKEE LETTER MA;  13B9;  1;  m;  a;  ;  
+13BA;  CHEROKEE LETTER ME;  13B9;  2;  m;  e;  ;  
+13BB;  CHEROKEE LETTER MI;  13B9;  3;  m;  i;  ;  
+13BC;  CHEROKEE LETTER MO;  13B9;  4;  m;  o;  ;  
+13BD;  CHEROKEE LETTER MU;  13B9;  5;  m;  u;  ;  
+13BE;  CHEROKEE LETTER NA;  13BE;  1;  n;  a;  ;  
+13BF;  CHEROKEE LETTER HNA;  13BE;  1;  hn;  a;  ;  
+13C0;  CHEROKEE LETTER NAH;  13BE;  1;  n;  a;  ;  ;  
+13C1;  CHEROKEE LETTER NE;  13BE;  2;  n;  e;  ;  
+13C2;  CHEROKEE LETTER NI;  13BE;  3;  n;  i;  ;  
+13C3;  CHEROKEE LETTER NO;  13BE;  4;  n;  o;  ;  
+13C4;  CHEROKEE LETTER NU;  13BE;  5;  n;  u;  ;  
+13C5;  CHEROKEE LETTER NV;  13BE;  6;  n;  <028C>;  ;  
+13C6;  CHEROKEE LETTER QUA;  13C6;  1;  k;  <02B7>a;  ;  
+13C7;  CHEROKEE LETTER QUE;  13C6;  2;  k;  <02B7>e;  ;  
+13C8;  CHEROKEE LETTER QUI;  13C6;  3;  k;  <02B7>i;  ;  
+13C9;  CHEROKEE LETTER QUO;  13C6;  4;  k;  <02B7>o;  ;  
+13CA;  CHEROKEE LETTER QUU;  13C6;  5;  k;  <02B7>u;  ;  
+13CB;  CHEROKEE LETTER QUV;  13C6;  6;  k;  <02B7><028C>;  ;  
+13CC;  CHEROKEE LETTER SA;  13CC;  1;  s;  a;  ;  
+13CD;  CHEROKEE LETTER S;  13CC;  1;  s;  ;  ;  
+13CE;  CHEROKEE LETTER SE;  13CC;  2;  s;  e;  ;  
+13CF;  CHEROKEE LETTER SI;  13CC;  3;  s;  i;  ;  
+13D0;  CHEROKEE LETTER SO;  13CC;  4;  s;  o;  ;  
+13D1;  CHEROKEE LETTER SU;  13CC;  5;  s;  u;  ;  
+13D2;  CHEROKEE LETTER SV;  13CC;  6;  s;  <028C>;  ;  
+13D3;  CHEROKEE LETTER DA;  13D3;  1;  d;  a;  ;  
+13D4;  CHEROKEE LETTER TA;  13D3;  1;  t;  a;  ;  
+13D5;  CHEROKEE LETTER DE;  13D3;  2;  d;  e;  ;  
+13D6;  CHEROKEE LETTER TE;  13D3;  2;  t;  e;  ;  
+13D7;  CHEROKEE LETTER DI;  13D3;  3;  d;  i;  ;  
+13D8;  CHEROKEE LETTER TI;  13D3;  3;  t;  i;  ;  
+13D9;  CHEROKEE LETTER DO;  13D3;  4;  d;  o;  ;  
+13DA;  CHEROKEE LETTER DU;  13D3;  5;  d;  u;  ;  
+13DB;  CHEROKEE LETTER DV;  13D3;  6;  d;  <028C>;  ;  
+13DC;  CHEROKEE LETTER DLA;  13DC;  1;  dl;  a;  ;  
+13DD;  CHEROKEE LETTER TLA;  13DC;  1;  tl;  a;  ;  
+13DE;  CHEROKEE LETTER TLE;  13DC;  2;  tl;  e;  ;  
+13DF;  CHEROKEE LETTER TLI;  13DC;  3;  tl;  i;  ;  
+13E0;  CHEROKEE LETTER TLO;  13DC;  4;  tl;  o;  ;  
+13E1;  CHEROKEE LETTER TLU;  13DC;  5;  tl;  u;  ;  
+13E2;  CHEROKEE LETTER TLV;  13DC;  6;  tl;  <028C>;  ;  
+13E3;  CHEROKEE LETTER TSA;  13E3;  1;  <02A6>;  a;  ;  
+13E4;  CHEROKEE LETTER TSE;  13E3;  2;  <02A6>;  e;  ;  
+13E5;  CHEROKEE LETTER TSI;  13E3;  3;  <02A6>;  i;  ;  
+13E6;  CHEROKEE LETTER TSO;  13E3;  4;  <02A6>;  o;  ;  
+13E7;  CHEROKEE LETTER TSU;  13E3;  5;  <02A6>;  u;  ;  
+13E8;  CHEROKEE LETTER TSV;  13E3;  6;  <02A6>;  <028C>;  ;  
+13E9;  CHEROKEE LETTER WA;  13E9;  1;  w;  a;  ;  
+13EA;  CHEROKEE LETTER WE;  13E9;  2;  w;  e;  ;  
+13EB;  CHEROKEE LETTER WI;  13E9;  3;  w;  i;  ;  
+13EC;  CHEROKEE LETTER WO;  13E9;  4;  w;  o;  ;  
+13ED;  CHEROKEE LETTER WU;  13E9;  5;  w;  u;  ;  
+13EE;  CHEROKEE LETTER WV;  13E9;  6;  w;  <028C>;  ;  
+13EF;  CHEROKEE LETTER YA;  13EF;  1;  j;  a;  ;  
+13F0;  CHEROKEE LETTER YE;  13EF;  2;  j;  e;  ;  
+13F1;  CHEROKEE LETTER YI;  13EF;  3;  j;  i;  ;  
+13F2;  CHEROKEE LETTER YO;  13EF;  4;  j;  o;  ;  
+13F3;  CHEROKEE LETTER YU;  13EF;  5;  j;  u;  ;  
+13F4;  CHEROKEE LETTER YV;  13EF;  6;  j;  <028C>;  ;  

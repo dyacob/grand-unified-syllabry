@@ -1,0 +1,414 @@
+<html>
+<head>
+  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Syllabic Form Folding</title>
+</head>
+<body bgcolor="#fffffh">
+
+<h1>Syllabic Form Folding</h1>
+
+<h2>Basic Folding</h2>
+
+<h3>Rows and Columns (or "Enter the Matrix")</h3>
+<p align="justify">
+In an open syllabary each letter will represent a consonant followed by a vowel
+(a "CV" pattern).  For education and pedagogical purposes the syllabary will
+most typically be organized into a two dimensional matrix.  Each row presents
+all forms of a particular consonant base.  Graphically the symbols of the
+consonant base will appear very similar across the row with only a minor
+difference (often a graphical appendage) to indicate which vowel is present.
+The Cherokee syllabary is an exception in this case where a consonant group has
+little visual similarity.
+</p>
+
+<p align="justify">
+The symbols added to the graphical base that denotes the vowel component are
+approximately the same for every consonant group.  The symbol will sometimes
+have to be adjusted to attach to a more complex graphical base.  To exploit
+regularity, the elements in the consonant group will be ordered in the same
+way across the row.  The vowel sequence across a row is then identical over
+all rows.  Consistent columns then emerge for each vowel inflection.  These
+columns, which represent vowel forms of the syllabary matrix, may also be named.
+</p>
+
+<p align="justify">
+Since the consonant and graphical base remain constant across a row (or more
+precisely the "read direction" of the matrix) the association of the consonant
+to the syllabic series is stronger than that of the vowel.  The consonant is
+the primary component of the syllable and the vowel the secondary component.
+Changing the vowel component would be a column-wise move within a syllabic
+series.  Changing the consonant component is a row-wise move and necessarily
+changes to a new syllabic series altogether.  These consonant based groupings
+also define an equivalence class.  Figure one presents an example syllabary
+that we will utilize in our discussion.</p>
+
+<table border="1">
+<caption>
+  <strong>Figure 1: A Syllabary With Six Forms</strong>
+</caption>
+<tbody>
+<tr align="center">
+  <td></th>
+  <th>a</th>
+  <th>e</th>
+  <th>i</th>
+  <th>o</th>
+  <th>u</th>
+  <th>(none)</th>
+  <td>Each row is a "syllabic series" named after its "base".</td>
+</tr>
+<tr align="center">
+  <th>c</th>
+  <td><img src="../images/ca.gif"><br>(ca)</td>
+  <td><img src="../images/ce.gif"><br>(ce)</td>
+  <td><img src="../images/ci.gif"><br>(ci)</td>
+  <td><img src="../images/co.gif"><br>(co)</td>
+  <td><img src="../images/cu.gif"><br>(cu)</td>
+  <td><img src="../images/c.gif"><br>(c)</td>
+  <td>This is the "ca series" also called the "ca family", its base is "<img src="../images/ca.gif">".</td>
+</tr>
+<tr align="center">
+  <th>d</th>
+  <td><img src="../images/da.gif"><br>(da)</td>
+  <td><img src="../images/de.gif"><br>(de)</td>
+  <td><img src="../images/di.gif"><br>(di)</td>
+  <td><img src="../images/do.gif"><br>(do)</td>
+  <td><img src="../images/du.gif"><br>(du)</td>
+  <td><img src="../images/d.gif"><br>(d)</td>
+  <td>This is the "da series" also dalled the "da family", its base is "<img src="../images/da.gif">".</td>
+</tr>
+<tr align="center">
+  <th>n</th>
+  <td><img src="../images/na.gif"><br>(na)</td>
+  <td><img src="../images/ne.gif"><br>(ne)</td>
+  <td><img src="../images/ni.gif"><br>(ni)</td>
+  <td><img src="../images/no.gif"><br>(no)</td>
+  <td><img src="../images/nu.gif"><br>(nu)</td>
+  <td><img src="../images/n.gif"><br>(n)</td>
+  <td>This is the "na series" also nalled the "na family", its base is "<img src="../images/na.gif">".</td>
+</tr>
+<tr align="center">
+  <th>p</th>
+  <td><img src="../images/pa.gif"><br>(pa)</td>
+  <td><img src="../images/pe.gif"><br>(pe)</td>
+  <td><img src="../images/pi.gif"><br>(pi)</td>
+  <td><img src="../images/po.gif"><br>(po)</td>
+  <td><img src="../images/pu.gif"><br>(pu)</td>
+  <td><img src="../images/p.gif"><br>(p)</td>
+  <td>This is the "pa series" also palled the "pa family", its base is "<img src="../images/pa.gif">".</td>
+</tr>
+<tr align="center">
+  <th>r</th>
+  <td><img src="../images/ra.gif"><br>(ra)</td>
+  <td><img src="../images/re.gif"><br>(re)</td>
+  <td><img src="../images/ri.gif"><br>(ri)</td>
+  <td><img src="../images/ro.gif"><br>(ro)</td>
+  <td><img src="../images/ru.gif"><br>(ru)</td>
+  <td><img src="../images/r.gif"><br>(r)</td>
+  <td>This is the "ra series" also ralled the "ra family", its base is "<img src="../images/ra.gif">".</td>
+</tr>
+<tr align="center">
+  <th>s</th>
+  <td><img src="../images/sa.gif"><br>(sa)</td>
+  <td><img src="../images/se.gif"><br>(se)</td>
+  <td><img src="../images/si.gif"><br>(si)</td>
+  <td><img src="../images/so.gif"><br>(so)</td>
+  <td><img src="../images/su.gif"><br>(su)</td>
+  <td><img src="../images/s.gif"><br>(s)</td>
+  <td>This is the "sa series" also salled the "sa family", its base is "<img src="../images/sa.gif">".</td>
+</tr>
+<tr align="center">
+  <th>t</th>
+  <td><img src="../images/ta.gif"><br>(ta)</td>
+  <td><img src="../images/te.gif"><br>(te)</td>
+  <td><img src="../images/ti.gif"><br>(ti)</td>
+  <td><img src="../images/to.gif"><br>(to)</td>
+  <td><img src="../images/tu.gif"><br>(tu)</td>
+  <td><img src="../images/t.gif"><br>(t)</td>
+  <td>This is the "ta series" also talled the "ta family", its base is "<img src="../images/ta.gif">".</td>
+</tr>
+<!-- tr align="center">
+  <td colspan="8">Syllabic "bases" are: <img src="../images/ca.gif">, <img src="../images/da.gif">, <img src="../images/na.gif">, <img src="../images/pa.gif">, <img src="../images/ra.gif">, <img src="../images/sa.gif"> and <img src="../images/ta.gif"></td>
+</tr -->
+</tbody>
+</table>
+
+<p align="justify">
+Note that in our simple syllabary the 7<sup>th</sup> column (or 6<sup>th</sup> form)
+is the vowel-less form.  It may seem like a contradiction in terms to have a syllable
+with a consonant and no vowel.  Most (all?) syllabaries do however have a vowel-less
+form that, depending on the word, will have a very weakly pronounced vowel 
+(dotless-i, "&#x0131;", in IPA) present or absolutely none at all (in consonant clusters for example).
+</p>
+
+<h3>Forms are the Cases</h3>
+<p align="justify">
+It is sometimes useful when considering the folding of syllables to think of
+each syllabic vowel form as a different "case".  The analogy is useful when
+first considering the issue under the familiar "case-folding" idiom.   The
+objective is the same, we want to convert all manifestations of a letter into
+a single easily comparable state.  After a certain point however the case
+context becomes only weakly applicable to the vowel states and the notion
+becomes misleading.  To avoid confusion we will avoid the use of the "case"
+analogy and refer to the vowel states of syllabic series as a "form".
+</p>
+
+<p align="justify">
+As alluded to in the preceding paragraph syllabic folding converts a given
+syllable into a representative form.  The representative form is generally
+considered to be the first form which is also the graphic base of the series.
+While any form will do for the purpose of comparison, the first form is
+the most 
+intuitive because it is also considered the representative in other contexts.
+</p>
+
+<p align="justify">
+However, as a matter of practicality the "reading quality" of a string of
+syllables all in the first form is found to be cognitively awkward and tedious.
+Using instead the vowel-less form as the representative is found to require less
+cognitive energy to work with and fits in naturally with the folding being
+against the vowel component of the syllable.  Syllabic folding then converts
+the syllables into their vowel-less state.
+</p>
+
+<p align="justify">
+Syllabic folding, unlike case folding, is gramatically destructive, the meaning
+of the word is altered not only its appearance.  Hence folding should only be
+used for matching and never for formatting.
+</p>
+
+<h3>Matching Problems</h3>
+<h4>Substrings &amp; Form Insensitivity</h4>
+<p align="justify">
+The crux of the syllabic pattern matching problem comes from the fusion of
+consonants and vowels into a single symbol.  The character boundary enompases
+two phoneme boundaries.  The consonant and vowel are both
+properties of the character, but we have no means by which to specify or mask
+one or the other in regular expressions languages.
+</p>
+
+<p align="justify">
+To illustrate the problem,
+consider an example from an alphabetic system such as English, where consonants
+and vowels are always seperate symbols.  The word "can" is a simple substring
+of the words "<span style="color:red">can</span>ada",
+"<span style="color:red">can</span>ister",
+"<span style="color:red">can</span>opy" and an imaginary word
+"sto<span style="color:red">can</span>ura".
+Turned into syllables and adjusting some phonetics along the way
+(ignoring that "ca" is better as "ka" but converting "py" into "pi") the words
+become "(ca)(na)(da)", "(ca)(ni)(s)(te)(r)", "(ca)(no)(pi)" and "(s)(to)(ca)(nu)(ra)".
+None of which could be matched by "(ca)(n)" because "(n)" is a different symbol
+(and codepoint) than "(na)", "(ni)", "(no)" and "(nu)".  This problem never emerges in
+alphabets as the built in seperation of vowels and consonants makes it
+impossible (there is no overlap in character-phoneme boundaries).
+</p>
+
+<p align="justify">
+</p>
+<table border="1">
+<caption>
+  <strong>Figure 2: A Syllabary Search for <img src="../images/ca.gif"><img src="../images/n.gif"></strong>
+</caption>
+<tbody>
+<tr align="center">
+  <th>Original</th>
+  <th>Folded</th>
+  <th>Match on Fold</th>
+</tr>
+<tr align="center">
+  <td><img src="../images/ca.gif"><img src="../images/n.gif"><br>(ca)(n)</td>
+  <td><img src="../images/c.gif"><img src="../images/n.gif"><br>(c)(n)</td>
+  <td><img src="../images/c_red.gif"><img src="../images/n_red.gif"><br><span style="color:red">(c)(n)</span></td>
+</tr>
+<tr align="center">
+  <td><img src="../images/ca.gif"><img src="../images/na.gif"><img src="../images/da.gif"><br>(ca)(na)(da)</td>
+  <td><img src="../images/c.gif"><img src="../images/n.gif"><img src="../images/d.gif"><br>(c)(n)(d)</td>
+  <td><img src="../images/c_red.gif"><img src="../images/n_red.gif"><img src="../images/d.gif"><br><span style="color:red">(c)(n)</span>(d)</td>
+</tr>
+<tr align="center">
+  <td><img src="../images/ca.gif"><img src="../images/ni.gif"><img src="../images/s.gif"><img src="../images/te.gif"><img src="../images/r.gif"><br>(ca)(ni)(s)(te)(r)</td>
+  <td><img src="../images/c.gif"><img src="../images/n.gif"><img src="../images/s.gif"><img src="../images/t.gif"><img src="../images/r.gif"><br>(c)(n)(s)(t)(r)</td>
+  <td><img src="../images/c_red.gif"><img src="../images/n_red.gif"><img src="../images/s.gif"><img src="../images/t.gif"><img src="../images/r.gif"><br><span style="color:red">(c)(n)</span>(s)(t)(r)</td>
+</tr>
+<tr align="center">
+  <td><img src="../images/ca.gif"><img src="../images/no.gif"><img src="../images/pi.gif"><br>(ca)(no)(pi)</td>
+  <td><img src="../images/c.gif"><img src="../images/n.gif"><img src="../images/p.gif"><br>(c)(n)(p)</td>
+  <td><img src="../images/c_red.gif"><img src="../images/n_red.gif"><img src="../images/p.gif"><br><span style="color:red">(c)(n)</span>(p)</td>
+</tr>
+<tr align="center">
+  <td><img src="../images/s.gif"><img src="../images/to.gif"><img src="../images/ca.gif"><img src="../images/no.gif"><img src="../images/ra.gif"><br>(s)(to)(ca)(nu)(ra)</td>
+  <td><img src="../images/s.gif"><img src="../images/t.gif"><img src="../images/c.gif"><img src="../images/n.gif"><img src="../images/r.gif"><br>(s)(t)(c)(n)(r)</td>
+  <td><img src="../images/s.gif"><img src="../images/t.gif"><img src="../images/c_red.gif"><img src="../images/n_red.gif"><img src="../images/r.gif"><br>(s)(t)<span style="color:red">(c)(n)</span>(r)</td>
+</tr>
+</tbody>
+</table>
+
+<p>In a Perl example:</p>
+<pre>
+  my $haystack = join("",&lt;FILE&gt;);
+  my $needle   = "<img src="../images/ca.gif"><img src="../images/n.gif">";
+
+  if ( $haystack =~ /$needle/i ) {  # folding here should be applied as above
+     :
+     :
+  }
+</pre>
+
+<p align="justify">where $needle folds to "<image src="../images/c.gif"><image src="../images/n.gif">".  Comparison to words in the <code>$haystack</code> would
+likewise be made with in the folded form.
+Note that the case insensitivity here is equivalent to expanding
+each symbol into all of its forms.  That is, the English expression
+<code>/can/i</code> is equivalent to <code>/[Cc][Aa][Nn]/</code> (which in
+turn is short for <code>/(C|c)(A|a)(N|n)/</code>).  The case
+insensitivity flag, i, is then a tool of convenience that relieves the
+developer of the tedium of composing the expanded form.  The flag also aids
+in keeping the expression easier to read, understand and maintain.</p>
+
+<p align="justify">The equivalent expansion for a syllabary would be:
+<code>/[<img src="../images/ca.gif"><img src="../images/ce.gif"><img src="../images/ci.gif"><img src="../images/co.gif"><img src="../images/cu.gif"><img src="../images/c.gif">][<img src="../images/na.gif"><img src="../images/ne.gif"><img src="../images/ni.gif"><img src="../images/no.gif"><img src="../images/nu.gif"><img src="../images/n.gif">]/</code>
+Clearly, this is a considerably greater burden for the developer working with
+syllabaries.  This is also representative of the present status of RE languages
+and their support for syllabic character proprties.  For want of syllabic
+folding, this is how developers working with syllabic scripts must construct
+form insensitive expressions.</p>
+
+<h3>Back to Class(es)</h3>
+
+<p align="justify">
+The example with
+<code>/<img src="../images/ca.gif"><img src="../images/n.gif">/i</code>.
+helps illustrate another point.  While the expansion shown is accurate for
+a form insensitive match of the two syllables, we did not truly desire that
+the entire sequence be matched form insensitively.  A form insensitive match
+for "(ca)(n)", would match all forms of "(n)" as desired, but we were not
+also interested in all forms of "(ca)" in this case (we did not want "(ce)",
+"(ci)", etc).  We wanted to restrict our match to "<img src="../images/ca.gif">"
+specifically
+followed by any form of the "<img src="../images/na.gif">" family.  What we
+were really after was: <code>/<img src="../images/ca.gif">[<img src="../images/na.gif"><img src="../images/ne.gif"><img src="../images/ni.gif"><img src="../images/no.gif"><img src="../images/nu.gif"><img src="../images/n.gif">]/</code>.</p>
+
+
+<p align="justify">
+To be certain, form insensitive matches <em>are desirable</em>
+and do save the burden of work illustrated in the last example.  The longer the
+syllabic sequence, the more labour will be saved with a form insensitive match
+feature.
+</p>
+
+<p align="justify">
+The <code>/<img src="../images/ca.gif">[<img src="../images/na.gif"><img src="../images/ne.gif"><img src="../images/ni.gif"><img src="../images/no.gif"><img src="../images/nu.gif"><img src="../images/n.gif">]/</code> expression is still a little
+awkward and laborius to use.  The range equivalent
+<code>/<img src="../images/ca.gif">[<img src="../images/na.gif">-<img src="../images/n.gif">]/</code>
+is better but hazardous since the range operator, <code>-</code>, is
+likely to be applied over the initial and final character code address range.
+There is no certainty that syllables in a family are in contiguous address
+space or even ordered as expected.</p>
+
+<p align="justify">
+The ideal form is then to apply syllabic character classes giving us the
+consise expression:
+<code>/<img src="../images/ca.gif">[#<img src="../images/na.gif">#]/</code>.
+A discussion on syllabic character classes can be found in the article
+<a href="http://syllabary.sourceforge.net/Articles/PatternMatching/">An Introduction to Syllabaries and Syllabic Pattern Matching</a>.
+</p>
+
+
+
+<!-- h2>Intermediate Folding</h2>
+
+<p align="justify">This section would discuss a 2nd stage of folding based on equivalence classes.
+The equivalence class for all forms of "E" <code>[=E=]</code> is probably not thought of as folding.
+The notion here is that a more aggressive fold for <code>/E/i</code> would fold all forms of "E" onto
+"e".  Does <code>/[=E=]/i</code> do this?
+
+<p>The examples illustrate the both the Intermediate and Basic problem (but not as strongly for the basic).</p>
+
+<table border="1">
+<tbody>
+  <tr align="center">
+    <th>Syllable</th>
+    <th>Amharic Fold</th>
+    <th>Tigrigna Fold</th>
+    <th>Amharic Example</th>
+  </tr>
+  <tr align="center">
+    <td>ሕ</td>
+    <td>ህ</td>
+    <td>ሕ</td>
+    <td><a href="http://unicode.ethiozena.net/Gazettas/ZeMonitor/Archives/1996/Tekemt/13/ZeMonitor1.130296.sera.html">Original Article</a><br><a href="ZeMonitor1.130296.html">Highlighted Examples</a></td>
+  </tr>
+  <tr align="center">
+    <td>ኅ</td>
+    <td>ህ</td>
+    <td>ህ</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr align="center">
+    <td>ኽ</td>
+    <td>ህ</td>
+    <td>ኽ</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr align="center">
+    <td>ሥ</td>
+    <td>ስ</td>
+    <td>ስ</td>
+    <td><a href="http://unicode.ethiozena.net/Gazettas/ZeMonitor/Archives/1996/Tekemt/13/ZeMonitor3.130296.sera.html">Original Article</a><br><a href="ZeMonitor3.130296.html">Highlighted Examples</a></td>
+  </tr>
+  <tr align="center">
+    <td>ፅ</td>
+    <td>ጽ</td>
+    <td>ጽ</td>
+    <td><a href="http://unicode.ethiozena.net/Gazettas/ZeMonitor/Archives/1996/Tekemt/13/ZeMonitor3.130296.sera.html">Original Article</a><br><a href="ZeMonitor3.130296.html">Highlighted Examples</a></td>
+  </tr>
+  <tr align="center">
+    <td>ዕ</td>
+    <td>እ</td>
+    <td>ዕ</td>
+    <td><a href="http://unicode.ethiozena.net/Gazettas/ZeMonitor/Archives/1996/Tekemt/13/ZeMonitor3.130296.sera.html">Original Article</a><br><a href="ZeMonitor3.130296.html">Highlighted Examples</a></td>
+  </tr>
+</tbody>
+</table -->
+
+
+<h2>Advanced Folding</h2>
+
+<p align="justify">Thinking again in terms of the "case" indiom a new circumstance will arrise in
+a mutli-case writing system.  When you have more than two cases to contend with, you may not want
+to fold all cases all the time.  This is an issue that never arrises with Roman (aka "Latin") alphabet
+since cases are in a binary system -when you fold one case, you fold all cases.  Before long a
+developer will desire a means by which to restrict which cases get folded.</p>
+
+<p align="justify">A solution is to make use of the occurance limiter notation in regular expressions
+languages under a syllabic context.  The syllabic context can be set with the % operator.  For
+example the expression:
+<code>/<img src="../images/na.gif">{%3-5}/</code>
+would indicate that only forms 3-5 should be folded together.  The expansion here would be:
+<code>/[<img src="../images/ni.gif"><img src="../images/no.gif"><img src="../images/nu.gif">]/</code>.
+However, the expression is not an option when the expression is not constant.  For instance if
+the folding limiter was applied against a variable:
+<code>/$x{%3-5}/</code>.</p>
+
+<p align="justify">The folding limiter may grow be applied in a negation context whereby folding
+occurs for all forms except for those specified: <code>/$x{^%3-5}/</code>.</p>  Likewise the
+limiter may be applied to ranges:
+<code>/[<img src="../images/ca.gif"><img src="../images/da.gif">]{%1,4-6}/</code>
+and
+<code>/[<img src="../images/ra.gif">-<img src="../images/ta.gif">]{^%4-6}/</code>.
+
+<p align="justify">Form conversions are often desirable. Conversion may be applied in Perl
+transliterations and substitutions for example:</p>
+
+<dir>
+  <code>tr/[#1-3#]/[#4-6#]/;</code>
+</dir>
+and
+<dir>
+  <code>$word =~ s/[#7#]([#<img src="../images/da.gif">#])/[#2#]$1/g;</code>
+</dir>
+
+<hr>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<html>
+<head>
+  <title>GUS Frequently Asked Questions</title>
+</head>
+<body bgcolor="#fffffh">
+<h1><u>GUS Frequently Asked Questions</u></h1>
+
+<ol>
+<a name="coverage"></a><h2><li><u>What syllabaries are covered by GUS?</u></h2>
+
+<p align="justify">As GUS is at heart a mapping of code points, code points from a common character set are prerequisite.  Presently only those syllabaries that are a part of the Unicode 3.1 standard and the ISO-10646 Basic Multilingual Plane.  We may venture out of the BMP as additional syllabaries are encoded and as volunteers become available.</p>
+
+<table border>
+<tr>
+  <th>Covered</th>
+  <th rowspan="10" width="40">&nbsp;</th>
+  <th>Not Covered</th>
+</tr>
+<tr>
+  <th>Ethiopic<br>U+1200 - U+1357</th>
+  <th rowspan="10" valign="top">
+    Ahom<br>
+    Bakri Sapalo<br>
+    Balinese<br>
+    Batak<br>
+    Bengali<br>
+    Brahmi<br>
+    Bugis<br>
+    Buhid<br>
+    Burmese<br>
+    Byblos<br>
+    Celtiberian<br>
+    Cham<br>
+    Cypriot<br>
+    Dehong (Tai Nua)<br>
+    Devanagari<br>
+    Eskaya<br><!-- Eskaya has V, CV, CVC, CCV, CCVC, VC, VCC, CVCC, CCVCC symbols -->
+    Gujarati<br>
+    Gurmukhi (Punjabi)<br>
+    Hangul<br>
+    Hanun&oacute;o<br>
+    Iberian<br>
+    Inuktitut<br>
+    Javanese<br>
+    Kannada<br>
+    Kharosthi<br>
+    Khmer<br>
+    La Mojarra<br>
+    Lao<br>
+    Lepcha<br>
+    Limbu<br>
+    Linear A<br>
+    Linear B<br>
+    Lontara / Makasar<br>
+    Malayalam<br>
+    Manchu<br>
+    Maya<br>
+    Meroitic<br>
+    Ndjuk&aacute;<br>
+    Newari<br>
+    Old Persiaan<br>
+    Oriya<br>
+    Pahawh Hmong<br>
+    Phags-pa<br>
+    Redjang / Kaganga<br>
+    Sinhala<br>
+    Sorang Sompeng<br>
+    Tagalog<br>
+    Tagbanwa<br>
+    Tai Dam<br>
+    Tai Lue<br>
+    Tamil<br>
+    Telugu<br>
+    Thai<br>
+    Tibetan<br>
+    Tocharian<br>
+    Vai<br><!-- Vai is a closed syllabary -->
+    Varang Kshiti
+  </th>
+</tr>
+<tr>
+  <th>Cherokee<br>U+13A0 - U+13F4</th>
+</tr>
+<tr>
+  <th>
+    Carrier (Dakelh)<br>
+    Cree (Nehiyaw)<br>
+    Inuktitut<br>
+    U+1400 - U+167F</th>
+</tr>
+<tr>
+  <th>Hiragana<br>U+3041 - U+3094</th>
+</tr>
+<tr>
+  <th>Katakana<br>U+30A1 - U+32FE</th>
+</tr>
+<tr>
+  <th>Yi<br>U+A000 - U+A48C</th>
+</tr>
+</table>
+
+
+<a name="family"></a><h2><li><u>Why are syllabaries, like Hangul or Malayalam, not covered?</u></h2>
+<p align="justify">These syllabaries ("alphasyllabaries") rely on diacritic marks, as a separate
+character code, to compose a syllable from a base consonant.  The base letter and the diacritic
+being two separate character codes, the same text processing issue does not arise as it does for
+syllabaries not employing diacritics (where a single character code represents each syllable).</p>
+
+<p align="justify">Stated another way, the GUS project addresses all Unicode code points that
+represent at least a "CV" symbol (to a maximum extent of a "CVCT" symbol) where the "V"
+component can not be modified by other symbols as a means to form the base of a new syllable.</p>
+
+<table border=1>
+<tr>
+  <th colspan="3">Syllabaries</th>
+  <th rowspan="10" width="40">&nbsp;</th>
+  <th>Alpha Syllabaries</th>
+</tr>
+<tr>
+  <th>CV Syllabaries</th>
+  <th>CVC Syllabaries</th>
+  <th>CVT Syllabaries</th>
+  <th>C(V)+D Syllabaries</th>
+</tr>
+<tr valign="top">
+  <th>
+    Carrier (Dakelh)<br>
+    Celtiberian<br>
+    Cherokee<br>
+    Cree (Nehiyaw)<br>
+    Ethiopic<br>
+    Hiragana<br>
+    Inuktitut<br>
+    Katakana<br>
+    Linear A<br>
+    Linear B<br>
+    Old Persian Cuneiform<br>
+    Ndjuk&aacute;<br>
+    Meroitic<br>
+    Byblos<br>
+  </th>
+  <th>
+    Eskaya<br><!-- Eskaya has V, CV, CVC, CCV, CCVC, VC, VCC, CVCC, CCVCC symbols -->
+    La Mojarra<br>
+    Maya<br>
+    Vai<br>
+  </th>
+  <th>Yi</th>
+  <th>
+    Ahom<br>
+    Bakri Sapalo<br>
+    Balinese<br>
+    Batak<br>
+    Bengali<br>
+    Brahmi<br>
+    Bugis<br>
+    Buhid<br>
+    Burmese<br>
+    Byblos<br>
+    Cham<br>
+    Cypriot<br>
+    Dehong (Tai Nua)<br>
+    Devanagari<br>
+    Eskaya<br><!-- Eskaya has V, CV, CVC, CCV, CCVC, VC, VCC, CVCC, CCVCC symbols -->
+    Gujarati<br>
+    Gurmukhi (Punjabi)<br>
+    Hangul<br>
+    Hanun&oacute;o<br>
+    Iberian<br>
+    Inuktitut<br>
+    Javanese<br>
+    Kannada<br>
+    Kharosthi<br>
+    Khmer<br>
+    La Mojarra<br>
+    Lao<br>
+    Lepcha<br>
+    Limbu<br>
+    Linear A<br>
+    Linear B<br>
+    Lontara / Makasar<br>
+    Malayalam<br>
+    Manchu<br>
+    Maya<br>
+    Meroitic<br>
+    Newari<br>
+    Old Persian Cuneiform<br>
+    Oriya<br>
+    Pahawh Hmong<br>
+    Phags-pa<br>
+    Redjang / Kaganga<br>
+    Sinhala<br>
+    Sorang Sompeng<br>
+    Tagalog<br>
+    Tagbanwa<br>
+    Tai Dam<br>
+    Tai Lue<br>
+    Tamil<br>
+    Telugu<br>
+    Tibetan<br>
+    Thai<br>
+    Tocharian<br>
+    Vai<br><!-- Vai is a closed syllabary -->
+    Varang Kshiti
+  </th>
+</tr>
+</table>
+
+
+<a name="family"></a><h2><li><u>What is a syllabic "family"?</u></h2>
+<p align="justify">A syllabic family is a set of symbols derived from a common
+phoneme or glyph.  Usually this means all syllables with a common initial
+consonant.  The term "series" is interchangeable with "family".</p>
+
+
+<a name="family"></a><h2><li><u>What is a syllabic "form"?</u></h2>
+<p align="justify">Some syllabaries (Ethiopic for example) make use of the
+notion that each syllable represents a single "form" (or family member) in a
+syllabic series.  In Roman script the best analogy would be the distinction 
+between "B" and "b" as two forms of the same letter.  A syllabary may be
+thought of as a script where each letter has a new case that corresponds
+to each vowel in the language using it.  So in an English syllabary we would
+have "cases" for at least "Ba", "Be", "Bi", "Bo", "Bu".  Of course the "cases"
+now become more important to writing than they did before as the each carry an
+implicit vowel.</p>
+
+<p align="justify">These cases, which we here after to as a "form" or "order", may have proper names.  Rather than derive a unified naming convention for the syllabic orders, we have opted to enumerate them beginning from 1.</p>
+
+
+<a name="uber"></a><h2><li><u>What about locales?</u></h2>
+<p align="justify">In some cases more than one language will make use of a
+given syllabary and may do so in a unique way.  When different consonant or
+vowel associations occur for a given symbol the consequence to GUS would mean
+a competing mapping of the symbol.  Which then do we decide is the "correct"?</p>
+
+<p align="justify">It is intended that the GUS table be applied in localised
+software and so the GUS table will have to be localised.  Perhaps broken into
+components based on script and language, specifics are as of yet to be worked
+out by project participants.  The normative form of GUS will make use of
+traditional rules to the extent possible, hopefully avoiding bias towards
+present day languages.</p>
+
+<p align="justify">While vowel assignments may change between languages, it is
+not expected that form ordering will change accordingly.  The present treatment
+of forms assumes that they are locale independent and thus fixed.  Note that
+this also means that forms and vowels become independent from one another.</p>
+
+
+<a name="family"></a><h2><li><u>How are consonant clusters treated?</u></h2>
+<p align="justify">Some syllables may represent CCVCC type patterns.  The
+project team will need to be careful to not be confused by English
+transcription when mapping these syllables.  When an IPA symbol is not
+available for a CC pattern, two IPA consonant symbols will be used as a single
+position on the "C" axis.</p>
+
+
+</body>
+</html>

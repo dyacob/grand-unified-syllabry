@@ -1,0 +1,384 @@
+<html>
+<head>
+  <title>Character Classes</title>
+  <META HTTP-EQUIV="content-type" content="text-html; charset=utf-8">
+</head>
+<body bgcolor="#fffffh">
+
+<h2><u>Legacy Character Classes</u></h2>
+
+<p align="justify">Character classes as defined in ANSI C and POSIX aim to provide a simple means to determine properties of an arbitrary character. The properties that we can analysis are the character's functional use in text (punctuation, alphabetic, digital, space, etc), relational ( [=c=], case insensitive comparisons ) which the locale mechanism lets us make specific to a language convention, orthographic semantics (uppercase, lowercase) and the character's address range (printable, ASCII).</p>
+
+<p align="justify">A software developer working with Ethiopic text will want the same utilities for character analysis as he or she had for single byte text. Unicode aware resources will allow for generic character tests so that script specific functions can be avoided. For example a test for an Ethiopic punctuation might take the form:</p>
+
+<dir>
+<code>if ( isrange ( ch, "ethiopic" ) &amp;&amp; ispunct ( ch ) ) { ...</code>
+</dir>
+
+<p align="justify">and avoids the need for an "isEthiopicPunct" equivalent.</p>
+
+<p align="justify">While progress is being made towards Unicode based and multilingual aware pattern matching tools, by and large existing tools remain oriented towards the properties of western, Latin based, scripts. In this section we will look at extension of the character class paradigm to accommodate needs particular to Ethiopic script and languages while trying to maintain a perspective towards syllabic writing systems in general.</p>
+
+<h2><u>Syllabic Classes</u></h2>
+
+<p align="justify">The first simple extension to the standard character class lexicon would be the introduction of "[:syllable:]" as the logical analog to "[:alpha:]". "[:syllable:]" would match any character with a syllabic property, it is left to the user to restrict the syllabary of interest.</p>
+
+<p align="justify">When we looked at Ethiopic character entity names we had our first introduction to the concept of Ethiopic character classes. In fact the naming convention proposed is built upon recognizing the "rows" and "columns" of the traditional syllabary with discretely named terms. It is a common problem to want to detect either the row or column property of an arbitrary Ethiopic character, as we will examine in more detail shortly. We can employ row and column names to define additional POSIX style character classes as follows:</p>
+
+<table border>
+<tr>
+  <th>Pattern</th>
+  <th>Expansion</th>
+  <th>Description</th>
+</tr>
+<tr>
+  <td align="center">[:ላዊ:]<br><nobr>(or [:lawi:])</nobr></td>
+  <td align="center">[ለ-ሏ]</td>
+  <td>Match any syllable in the "Lawi" family (ለ thru ሏ).</td>
+</tr>
+<tr>
+  <td align="center">[:ካፍ:]<br><nobr>(or [:kaf:])</nobr></td>
+  <td align="center">[ከ-ኮኰኲ-ኵ]</td>
+  <td>Match any syllable in the "Kaf" family (ከ thru ኵ but excluding undefined address in between, all entity names beginning with "kaf-").</td>
+</tr>
+<tr>
+  <td align="center">[:ግዕዝ:]<br><nobr>(or [:geez:])</nobr></td>
+  <td align="center">[ሀለሐመሠረሰሸቀቐበቨተቸኀነኘአከኸወዐዘዠየደዸጀገጘጠጨጰጸፀፈፐ]</td>
+  <td>Match any ግዕዝ (first) form syllable.</td>
+</tr>
+</table>
+
+<p align="justify">This approach maintains a Ge'ez script perspective and requires the definition of a considerable number of pattern matching terms meaningful only in the applicable address range. The approach can be generalized for use with other syllabaries as follows:</p>
+
+<table border>
+<tr>
+  <th>Pattern</th>
+  <th>Expansion</th>
+  <th>Description</th>
+</tr>
+<tr>
+  <td align="center">[:ለ:]</td>
+  <td align="center">[ለ-ሏ]</td>
+  <td>Match any character in the same family with ለ.  Likewise
+for [:ሉ:], [:ሊ:], [:ላ:], etc.</td>
+</tr>
+<tr>
+  <td align="center">[:ከ:]</td>
+  <td align="center">[ከ-ኮኰኲ-ኵ]</td>
+  <td>Match any character in the same family with ከ.  Likewise
+for [:ኩ:], [:ኪ:], [:ካ:], etc.</td>
+</tr>
+<tr>
+  <td align="center"><nobr>(isrange("ethiopic") &&<br>[#1#])</nobr></td>
+  <td align="center">[ሀለሐመሠረሰሸቀቐበቨተቸኀነኘአከኸወዐዘዠየደዸጀገጘጠጨጰጸፀፈፐ]</td>
+  <td>Match any first form syllable in the Ethiopic context.</td>
+</tr>
+</table>
+
+<p align="justify">Note that in the final pattern for detecting a first form syllable some means was required to restrict the context to Ethiopic script so as not to match a first form syllable from any syllabary. The percentage sign, "%", is used here to specify the syllabic context by employing the "modulo" meaning of the symbol.</p>
+
+<h2><u>Locale Based Equivalence Classes</u></h2>
+
+<p align="justify">In the strictest sense no two members of the Ethiopic syllabary would have the same same phonemic value. The presence of ኧ (U+12A8) is the telltale indicator that this is not quite the case. As a consequence of the phonemic decay of many Ethiopic syllographs spelling correctness in Ethiopian and Eritrean languages works on the notion of proximity. While each language may recognize a canonical spelling for a given word, a rendering may still be regarded as "correct" or acceptable based on its orthographic distance from the canonical rendering. Further, as with American and British English spellings, the canonical spellings are also allowed to change for the same word across national or linguistic borders.</p>
+
+<p align="justify">To handle these conventions, pattern matching software need be made aware of the localized rules. A demonstrative sampling is offered in our next table:</p>
+
+<table border width="600">
+<tr bgcolor="#bfbfbf">
+  <th>Equivalence<br>Class</th>
+  <th>Locale</th>
+  <th>Expansion</th>
+  <th>Comment</th>
+</tr>
+<tr>
+  <td align="center" rowspan="3">[=ሃ=]</td>
+  <td>Amharic</td>
+  <td>[ሀሃሐሓኀኃኻ]</td>
+  <td>Also needed for [=ሁ=], [=ሂ=], [=ሃ=], etc.</td>
+</tr>
+<tr>
+  <td><nobr>Tigrigna (Et)</nobr></td>
+  <td>[ሀሃኀኃ]</td>
+  <td>ሐ and ኸ series and different phonemes in Tigrigna.</td>
+</tr>
+<tr>
+  <td><nobr>Tigrigna (Er)</nobr></td>
+  <td>[ሀሃ]</td>
+  <td>Redundant ኀ series is dropped.</td>
+</tr>
+<tr>
+  <td align="center" rowspan="2">[=ሰ=]</td>
+  <td>Amharic / <nobr>Tigrigna (Et)</nobr></td>
+  <td>[ሰሠ]</td>
+  <td>Also needed for [=ሱ=], [=ሲ=], [=ሳ=], etc.</td>
+</tr>
+<tr>
+  <td><nobr>Tigrigna (Er)</nobr></td>
+  <td>[ሰ]</td>
+  <td>Redundant ሠ series is dropped.</td>
+</tr>
+<tr>
+  <td align="center">[=ቈ=]</td>
+  <td>All</td>
+  <td>[ቆቈ]</td>
+  <td>Example: ቈነሰ vs ቆነሰ.</td>
+</tr>
+<tr>
+  <td align="center">[=ቍ=]</td>
+  <td>All</td>
+  <td>[ቁቍ]</td>
+  <td>Example: ቍጥር vs ቁጥር.</td>
+</tr>
+<tr>
+  <td align="center" rowspan="3">[=አ=]</td>
+  <td>Amharic</td>
+  <td>[አኣዐዓ]</td>
+  <td>Also needed for [=ኡ=], [=ኢ=], [=አ=], etc.</td>
+</tr>
+<tr>
+  <td><nobr>Tigrigna (Et)</nobr></td>
+  <td>[አኣ]</td>
+  <td>አ and ዐ series and different phonemes in Tigrigna.</td>
+</tr>
+<tr>
+  <td><nobr>Tigrigna (Er)</nobr></td>
+  <td>[አ]</td>
+  <td>አ is not interchangle with ኣ though
+phonetically equivalent.</td>
+</tr>
+<tr>
+  <td align="center">[=ኮ=]</td>
+  <td>All</td>
+  <td>[ኮኰ]</td>
+  <td><nobr>Example: መኮንን vs መኰንን.</nobr></td>
+</tr>
+<tr>
+  <td align="center">[=ጎ=]</td>
+  <td>All</td>
+  <td>[ጎጐ]</td>
+  <td>Example: ጎንዳር vs ጐንዳር.</td>
+</tr>
+<tr>
+  <td align="center" rowspan="2">[=ጸ=]</td>
+  <td>Amharic / Tigrigna (Et)</td>
+  <td>[ጸፀ]</td>
+  <td>Also needed for [=ጹ=], [=ጺ=], [=ጻ=], etc.</td>
+</tr>
+<tr>
+  <td><nobr>Tigrigna (Er)</nobr></td>
+  <td>[ጸ]</td>
+  <td>Redundant ፀ series is dropped.</td>
+</tr>
+<tr>
+  <td colspan="4">Eritrean conventions are based on the conventions taught in
+  primary education since 1991.  Ethiopian Tigrigna stresses the same conventions
+  but is more forgiving in the use of the redundant syllabic series.</td>
+</tr>
+</table>
+
+<p align="justify">Eritrean conventions are based on the conventions taught in primary education since 1991. Ethiopian Tigrigna stresses the same conventions but is more forgiving in the use of the redundant syllabic series.</p>
+
+<p align="justify">The table demonstrates a sample of useful character classes and how they would vary with locale setting. With collectively over 80 languages in Eritrea and Ethiopia the table is not intended to be comprehensive but demonstrative with the most familiar classes. Notably a class to fold all ግዕዝ and ራዕብ forms would be desirable when working with southern language of Ethiopia - where many of the classes shown above would not be applicable. It is also worth noting that Ge'ez and Ari may share character classes while not sharing character phonemes. This helps highlight the separation of spoken language from orthography, in this case without consequence to pattern matching, and is certainly the exception and not the rule, as we will now see.</p>
+
+<p align="justify">Demonstrating the classes we can consider the case of the Ethiopian Tafari Mekonnen who worked his way thru a military career up to the commander rank of "Ras". His life took a turn to the orthographically more complex when in 1930 Ras Tafari became Emperor of Ethiopia and assumed the coronation name Haile Selassie I. "Tafari Mekonnen" had only two possible spellings while "Haile Selassie" has numerous (not to imply for a moment though that HIM would have used anything but the canonical form). We'll look at these possibilities along with the female name ዓለምፀሐይ and its many spellings.</p>
+
+<table border>
+<tr align="center" bgcolor="#bfbfbf">
+  <th>Locale</th>
+  <th colspan="4">[=አ=]ለም[=ጸ=][=ሃ=]ይ</th>
+  <td rowspan="10"><font color="#bfbfbf">.</font></td>
+  <th colspan="4">[=ሃ=]ይለ [=ስ=]ላ[=ሴ=]</th>
+</tr>
+
+<tr>
+  <th rowspan="2" bgcolor="#bfbfbf">Amharic</th>
+<td>
+አለምጸሀይ<br>
+አለምጸሃይ<br>
+አለምጸሐይ<br>
+አለምጸሓይ<br>
+አለምጸኀይ<br>
+አለምጸኃይ<br>
+አለምጸኻይ
+</td><td>
+አለምፀሀይ<br>
+አለምፀሃይ<br>
+አለምፀሐይ<br>
+አለምፀሓይ<br>
+አለምፀኀይ<br>
+አለምፀኃይ<br>
+አለምፀኻይ
+</td><td>
+ኣለምጸሀይ<br>
+ኣለምጸሃይ<br>
+ኣለምጸሐይ<br>
+ኣለምጸሓይ<br>
+ኣለምጸኀይ<br>
+ኣለምጸኃይ<br>
+ኣለምጸኻይ
+</td><td>
+ኣለምፀሀይ<br>
+ኣለምፀሃይ<br>
+ኣለምፀሐይ<br>
+ኣለምፀሓይ<br>
+ኣለምፀኀይ<br>
+ኣለምፀኃይ<br>
+ኣለምፀኻይ
+</td><td>
+ሀይለ ሥላሤ<br>
+ሀይለ ሥላሴ<br>
+ሀይለ ስላሤ<br>
+ሀይለ ስላሴ
+</td><td>
+ሃይለ ሥላሤ<br>
+ሃይለ ሥላሴ<br>
+ሃይለ ስላሤ<br>
+ሃይለ ስላሴ
+</td><td>
+ሐይለ ሥላሤ<br>
+ሐይለ ሥላሴ<br>
+ሐይለ ስላሤ<br>
+ሐይለ ስላሴ
+</td><td>
+ሓይለ ሥላሤ<br>
+ሓይለ ሥላሴ<br>
+ሓይለ ስላሤ<br>
+ሓይለ ስላሴ
+</td>
+</tr>
+<tr>
+<td>
+ዐለምጸሀይ<br>
+ዐለምጸሃይ<br>
+ዐለምጸሐይ<br>
+ዐለምጸሓይ<br>
+ዐለምጸኀይ<br>
+ዐለምጸኃይ<br>
+ዐለምጸኻይ
+</td><td>
+ዐለምፀሀይ<br>
+ዐለምፀሃይ<br>
+ዐለምፀሐይ<br>
+ዐለምፀሓይ<br>
+ዐለምፀኀይ<br>
+ዐለምፀኃይ<br>
+ዐለምፀኻይ
+</td><td>
+ዓለምጸሀይ<br>
+ዓለምጸሃይ<br>
+ዓለምጸሐይ<br>
+ዓለምጸሓይ<br>
+ዓለምጸኀይ<br>
+ዓለምጸኃይ<br>
+ዓለምጸኻይ
+</td><td>
+ዓለምፀሀይ<br>
+ዓለምፀሃይ<br>
+ዓለምፀሐይ<br>
+ዓለምፀሓይ<br>
+ዓለምፀኀይ<br>
+ዓለምፀኃይ<br>
+ዓለምፀኻይ
+</td><td>
+ኀይለ ሥላሤ<br>
+ኀይለ ሥላሴ<br>
+ኀይለ ስላሤ<br>
+ኀይለ ስላሴ
+</td><td>
+ኃይለ ሥላሤ<br>
+ኃይለ ሥላሴ<br>
+ኃይለ ስላሤ<br>
+ኃይለ ስላሴ
+</td><td>
+ኻይለ ሥላሤ<br>
+ኻይለ ሥላሴ<br>
+ኻይለ ስላሤ<br>
+ኻይለ ስላሴ
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+  <th bgcolor="#bfbfbf">Tigrigna (Eritrea)</th>
+  <td>&nbsp;</td>
+  <td>አለምጸሀይ<br>አለምጸሃይ</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>ሀይለ ስላሴ</td>
+  <td>ሃይለ ስላሴ</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <th bgcolor="#bfbfbf">Tigrigna (Ethiopia)</th>
+  <td>አለምጸሀይ<br>አለምጸሃይ<br>አለምጸኀይ<br>አለምጸኃይ</td>
+  <td>አለምፀሀይ<br>አለምፀሃይ<br>አለምፀኀይ<br>አለምፀኃይ</td>
+  <td>ኣለምጸሀይ<br>ኣለምጸሃይ<br>ኣለምጸኀይ<br>ኣለምጸኃይ</td>
+  <td>ኣለምፀሀይ<br>ኣለምፀሃይ<br>ኣለምፀኀይ<br>ኣለምፀኃይ</td>
+  <td>ሀይለ ሥላሤ<br>ሀይለ ሥላሴ<br>ሀይለ ስላሤ<br>ሀይለ ስላሴ</td>
+  <td>ሃይለ ሥላሤ<br>ሃይለ ሥላሴ<br>ሃይለ ስላሤ<br>ሃይለ ስላሴ</td>
+  <td>ኀይለ ሥላሤ<br>ኀይለ ሥላሴ<br>ኀይለ ስላሤ<br>ኀይለ ስላሴ</td>
+  <td>ኃይለ ሥላሤ<br>ኃይለ ሥላሴ<br>ኃይለ ስላሤ<br>ኃይለ ስላሴ</td>
+</tr>
+<tr>
+  <th rowspan="2" bgcolor="#bfbfbf">Ge'ez</th>
+  <td>አለምጸሀይ<br>አለምጸሃይ</td>
+  <td>&nbsp;</td>
+  <td>ኣለምጸሀይ<br>ኣለምጸሃይ</td>
+  <td>&nbsp;</td>
+  <td>ሀይለ ስላሴ</td>
+  <td>ሃይለ ስላሴ</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+</table>
+
+<p align="justify">To be certain, while the renderings shown are logically possible they are not all necessarily probable, though the character classes used are entirely valid.  It should be emphasized also that the renderings shown for languages following Amharic do not indicate the acceptable spellings in those languages but demonstrate how the pattern matching outcome would change with the corresponding locales.  Indeed when searching for the same terms in a document known to be in the language indicated a matching pattern appropriate for the language would be applied.</p>
+
+<h2><u>The Syllabic Constraint</u></h2>
+
+<p align="justify">Owing to the nature of language morphology where derivational rules are developed that rely on consonants and vowels as disassociated entities we expect to be able to apply these rules to written language. In an open syllabary the two (consonant and vowel) are fused together and so a developer is driven to seek out or create tools to isolate these character properties. Regular expressions resources are now indispensable in this field but are somewhat cumbersome to use when applied to syllabaries. The C-V property of a syllable corresponds directly to the rows and columns of the syllabary itself. The syllabic and form classes allow us to match a single character as a member of a group. This is analogous to folding cases ([:ለ:]) or specifying a specific case ([#4#]). However, a limitation appears when we want to specify intersections of the two. An anticipated pitfall would be to attempt:</p>
+
+<dir>
+<code>[መበቀ][#2,4-7#]</code>
+</dir>
+
+<p align="justify">which matches two characters in sequence and not a member of the intersection:</p>
+
+<dir>
+<code>[ሙማ-ሞቡባ-ቦቁቃ-ቆ]</code>
+</dir>
+
+<p align="justify">A convenient solution is to apply the same logic of the syllabic form matching class in constraint notation.</p>
+
+<dir>
+<code>[ሙማ-ሞቡባ-ቦቁቃ-ቆ] --&gt; [መበቀ]{#2,4-7#}</code>
+</dir>
+
+<p align="justify">or in the negative expression:</p>
+
+<dir>
+<code>[መበቀ]{^#1,3,8-#}</code>
+</dir>
+
+<p align="justify">Applied in a small practical example we can develop an expression for the detection of the basic Amharic plural. We can start by defining a word stem as a sequence of syllables (assumed in the Ethiopic context):</p>
+
+<dir>
+<code>$stem = "[:syllable:]+";</code> 
+</dir>
+
+<p align="justify">which without the utility of the constraint becomes:</p>
+ 
+<dir>
+<code>/^$stem(({#4#}[ቱታቴት])|({#7#}[ቹቻቼች]))/</code> 
+</dir>
+
+<p align="justify">and with the expressive power of a syllabic constraint condenses nicely to:</p>
+ 
+<dir>
+<code>/^$stem(({#4#}ት)|({#7#}ች)){#2,4-6#}/</code> 
+</dir>
+
+<p align="justify">This is of course a very simple example and it is intended that the power of the operator be evident from visual inspection by those only casually acquainted with regular expressions syntax. Applied to very large and real world text and natural language processing problems we can expect the operator to become an indispensable member of the regular expression toolbox.</p>
+
+</body>
+</html>

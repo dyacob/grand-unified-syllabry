@@ -1,0 +1,528 @@
+<html>
+<head>
+  <title>An Introduction to Syllabaries and Syllabic Pattern Matching</title>
+</head>
+<body bgcolor="#fffffh">
+
+<h2 align="center">An Introduction to Syllabaries and Syllabic Pattern Matching</h2>
+
+<h3>A Simple Syllabary</h3>
+
+<p align="justify">
+<table border=1 align="left">
+  <tr align="center">
+    <th colspan="7">Simple Syllabary</th>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <th>+</th>
+    <th>a</th>
+    <th>e</th>
+    <th>i</th>
+    <th>o</th>
+    <th>u</th>
+  </tr>
+  <tr align="center">
+    <th>+</th>
+    <td><img src="simple/_.gif"></td>
+    <td><img src="simple/a.gif"></td>
+    <td><img src="simple/e.gif"></td>
+    <td><img src="simple/i.gif"></td>
+    <td><img src="simple/o.gif"></td>
+    <td><img src="simple/u.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>d</th>
+    <td><img src="simple/d.gif"></td>
+    <td><img src="simple/da.gif"></td>
+    <td><img src="simple/de.gif"></td>
+    <td><img src="simple/di.gif"></td>
+    <td><img src="simple/do.gif"></td>
+    <td><img src="simple/du.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>l</th>
+    <td><img src="simple/l.gif"></td>
+    <td><img src="simple/la.gif"></td>
+    <td><img src="simple/le.gif"></td>
+    <td><img src="simple/li.gif"></td>
+    <td><img src="simple/lo.gif"></td>
+    <td><img src="simple/lu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>m</th>
+    <td><img src="simple/m.gif"></td>
+    <td><img src="simple/ma.gif"></td>
+    <td><img src="simple/me.gif"></td>
+    <td><img src="simple/mi.gif"></td>
+    <td><img src="simple/mo.gif"></td>
+    <td><img src="simple/mu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>n</th>
+    <td><img src="simple/n.gif"></td>
+    <td><img src="simple/na.gif"></td>
+    <td><img src="simple/ne.gif"></td>
+    <td><img src="simple/ni.gif"></td>
+    <td><img src="simple/no.gif"></td>
+    <td><img src="simple/nu.gif"></td>
+  </tr>
+</table>
+<div align="justify">
+In simplest terms a syllabary is a system of writing where each letter
+represents a syllable.  Syllabaries under Unicode include Ethiopic,
+Cherokee, Canadian Unified Syllabics, Hiragana, Katakana and Yi.  Most
+of these syllabaries are "Open Syllabaries" which means that the final
+consonant is absent in the consonant-vowel-consonant (CVC) sequence of a
+complete syllable.  So most syllables are in fact just a CV pattern
+and in some cases will even be just a lone "C" or "V" letter as in an
+alphabetic writing system.  Syllabaries such as Devanagari or Hangul
+use a 2nd symbol, called a diacritic, to indicate the vowel.  These
+syllabaries, Alpha Syllabaries, are not our concern here.  Our focus
+in this article are those syllabaries that in Unicode do <em>not</em>
+use a separate character code to indicate the vowel component of a syllable.
+</div>
+</p>
+
+<p align="justify">
+An example syllabary that we will work with is the fictional "Simple Syllabary"
+shown in our first table on the left.  Our simple syllabary is made up of
+basic geometric shapes and shaded in some way to indicate the presence of an
+implicit vowel.  The table shows the phonetic mappings of the symbols to a
+few English consonants and the five basic vowels of English.  Notice that the
+first row does not have a leading consonant.  These "syllables" are just the
+simple case of the lone vowels.  Likewise the first column represents the
+consonants but without a trailing vowel.  These "syllables" are of course
+just consonants, like the lone vowels we will still refer to them as syllables
+though we are aware that they are special cases.
+</p>
+
+<p align="justify">
+We've glossed over the intersection of the first row and first column,
+"<img src="simple/_.gif">".  It is the vowel &#x026A; which we do not use in
+English.  This is not necessarily a defect, syllabaries may contain
+elements that ultimately are never used by a language and are just a
+part of the writing system for the logical completeness.  More than one
+language may use a given syllabary and indeed make use of what we thought
+were dormant letters.  Languages may not use a syllabary in identical ways and
+so we can expect either also that the vowel and (more likely) the consonant
+assignments might change a little.  Hence we will need to consider a user's
+locale when working on syllabic text in software.
+</p>
+
+<p align="justify">
+In our simple syllabary the intersection of each row and column represents
+a unique syllable.  Every row represents a syllabic series or "family" where
+all syllables begin with the same initial consonant and share a common
+graphic shape.  Not all syllabaries are so regular that a series will make
+use of an underlying glyph, but the leading consonant must remain fixed.
+Some syllabaries will in fact give formal names to the syllabic families as well
+as the syllabic forms (the columns).
+</p>
+
+<h3>Objectives in Syllabic Pattern Matching</h3>
+
+<p align="justify">
+In essence, what syllabaries need from regex languages is the facility to
+specify any row or column with in a matrix.  For example we would need a
+way to express "match only syllables in the form of 'a' ".  Conversely we
+would also want to specify somehow "match only syllables in the family of
+'m' ".  This is not a problem that alphabetic scripts face where the "C" and
+"V" components always have a independent character codes.  The fusion of
+the two is the crux of our problem as linguistic and orthographic interaction
+demand the we separate the two.  The short coming of regular expressions 
+languages to make this separation for us becomes a major limitation on their
+utility.  To harness the full power of regular expression systems developers
+generally have to first transliterate text into ASCII, perform pattern
+matches, and retransliterate the results back into the starting script.
+The rest of this article addresses how this limitation might be over come.
+</p>
+
+<h3>Syllabic Equivalence</h3>
+
+<p align="justify">
+One way to think of a syllabary is as if the different forms were all different
+"cases" of the same basic letter.  This is useful to a point, we do want the
+capability to "fold cases" for case insensitive pattern matches.  Of course
+we realize this is an over simplification since each "case" is embedded with
+more linguistic information than orthographic case differences are ladened
+with.
+</p>
+<p>
+The equivalence class model of POSIX style regular expressions is appropriate
+here.  Equivalence classes essentially strip away diacritical, accent or tonal
+marks to match the underlying character.  This is precisely what we need to
+accomplish for equating syllables in the same family.  For instance to match
+any member of the <img src="simple/m.gif"> family we would construct an
+equivalence expression "[=<img src="simple/m.gif">=]".  We can illustrate
+these results in our next table.
+</p>
+
+<table border=1>
+  <tr align="center">
+    <th colspan="7">[=<img src="simple/m.gif">=]</th>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <th>+</th>
+    <th>a</th>
+    <th>e</th>
+    <th>i</th>
+    <th>o</th>
+    <th>u</th>
+  </tr>
+  <tr align="center">
+    <th>+</th>
+    <td><img src="simple/_.gif"></td>
+    <td><img src="simple/a.gif"></td>
+    <td><img src="simple/e.gif"></td>
+    <td><img src="simple/i.gif"></td>
+    <td><img src="simple/o.gif"></td>
+    <td><img src="simple/u.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>d</th>
+    <td><img src="simple/d.gif"></td>
+    <td><img src="simple/da.gif"></td>
+    <td><img src="simple/de.gif"></td>
+    <td><img src="simple/di.gif"></td>
+    <td><img src="simple/do.gif"></td>
+    <td><img src="simple/du.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>l</th>
+    <td><img src="simple/l.gif"></td>
+    <td><img src="simple/la.gif"></td>
+    <td><img src="simple/le.gif"></td>
+    <td><img src="simple/li.gif"></td>
+    <td><img src="simple/lo.gif"></td>
+    <td><img src="simple/lu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>m</th>
+    <td bgcolor="pink"><img src="simple/m.gif"></td>
+    <td bgcolor="pink"><img src="simple/ma.gif"></td>
+    <td bgcolor="pink"><img src="simple/me.gif"></td>
+    <td bgcolor="pink"><img src="simple/mi.gif"></td>
+    <td bgcolor="pink"><img src="simple/mo.gif"></td>
+    <td bgcolor="pink"><img src="simple/mu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>n</th>
+    <td><img src="simple/n.gif"></td>
+    <td><img src="simple/na.gif"></td>
+    <td><img src="simple/ne.gif"></td>
+    <td><img src="simple/ni.gif"></td>
+    <td><img src="simple/no.gif"></td>
+    <td><img src="simple/nu.gif"></td>
+  </tr>
+</table>
+
+<p align="justify">
+We need not define an equivalence for every
+member of the <img src="simple/m.gif"> family.
+That is [=<img src="simple/ma.gif">=], [=<img src="simple/me.gif">=], [=<img src="simple/mi.gif">=], etc are not necessary.  A syllabary can generally be expected to have nominated one form as a geometric base (the parent), the others are then considered to have been derived from that base.  This may not be the case in syllabaries, such as Cherokee, that do not exhibit some degree of geometric regularity.  Nonetheless, only one representative family member is required to define an equivalence class for the entire family.
+</p>
+
+<p align="justify">
+<strong>Example:</strong>
+<dir>
+The transcription of the name "Emanuel" in our simple syllabary under Semitic
+rules would take a few forms:
+<br>&nbsp;
+<dir>
+<img src="simple/a.gif"><img src="simple/ma.gif"><img src="simple/nu.gif"><img src="simple/e.gif"><img src="simple/l.gif"> (correct)
+<br>
+<img src="simple/a.gif"><img src="simple/ma.gif"><img src="simple/n.gif"><img src="simple/e.gif"><img src="simple/l.gif">
+<br>
+<img src="simple/a.gif"><img src="simple/ma.gif"><img src="simple/ni.gif"><img src="simple/e.gif"><img src="simple/l.gif">
+<br>
+<img src="simple/a.gif"><img src="simple/ma.gif"><img src="simple/ne.gif"><img src="simple/l.gif">
+</dir>
+<br>&nbsp;
+To account for confusion the above also repeats with
+<img src="simple/a.gif">
+as
+<img src="simple/e.gif">.  Our expression to match all cases is then:
+<br>&nbsp;
+<dir>
+[<img src="simple/a.gif"><img src="simple/e.gif">]<img src="simple/ma.gif">[=<img src="simple/n.gif">=](<img src="simple/e.gif">)?<img src="simple/l.gif">
+</dir>
+</dir>
+<br>
+Some languages will use a syllabary with redundant syllabic series
+(Amharic's use of Ethiopic is a good example) such that the
+<img src="simple/d.gif"> family might instead be a duplicate of the
+<img src="simple/n.gif"> family which may happen when the language in question
+did not have the "n" sound in its phonemic repertoire.  The consequence is that
+our 
+[=<img src="simple/n.gif">=]
+equivalence would then include all
+<img src="simple/d.gif">
+as well under a locale setting for such a language.
+</p>
+
+
+<h3>Syllabic Classes</h3>
+
+<p>
+Similarly, we will also want to detect an arbitrary syllable ending in a
+given form.  Such is often the case when inflection occurs to show possession,
+pluralization, change of gender or article form of a noun.  To match any
+syllable ending in the "i" form for instance we might employ the lone vowel
+"<img src="simple/i.gif">" to construct the class [:<img src="simple/i.gif">:].
+</p>
+
+<p align="justify">
+While understood this approach is not ideal since it assumes the lone vowels
+of every script be defined as classes.  Doing so would offer a way to restrict
+the script that the class applies to, but we can assume also that mixed script
+text is fairly uncommon.  We can generalize the approach for all syllabaries
+by utilizing the notation of the modulo operator, "%", in a form like 
+[:%4:].  Since syllabaries refer to the initial form as the "first" and not the
+"zeroth" we bend the rules for convenience here and count from 1 in our
+notation.  An example is shown in our next table:
+</p>
+
+<table border>
+  <tr align="center">
+    <th colspan="7">[:%4:]</th>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <th>+</th>
+    <th>a</th>
+    <th>e</th>
+    <th>i</th>
+    <th>o</th>
+    <th>u</th>
+  </tr>
+  <tr align="center">
+    <th>+</th>
+    <td><img src="simple/_.gif"></td>
+    <td><img src="simple/a.gif"></td>
+    <td><img src="simple/e.gif"></td>
+    <td bgcolor="pink"><img src="simple/i.gif"></td>
+    <td><img src="simple/o.gif"></td>
+    <td><img src="simple/u.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>d</th>
+    <td><img src="simple/d.gif"></td>
+    <td><img src="simple/da.gif"></td>
+    <td><img src="simple/de.gif"></td>
+    <td bgcolor="pink"><img src="simple/di.gif"></td>
+    <td><img src="simple/do.gif"></td>
+    <td><img src="simple/du.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>l</th>
+    <td><img src="simple/l.gif"></td>
+    <td><img src="simple/la.gif"></td>
+    <td><img src="simple/le.gif"></td>
+    <td bgcolor="pink"><img src="simple/li.gif"></td>
+    <td><img src="simple/lo.gif"></td>
+    <td><img src="simple/lu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>m</th>
+    <td><img src="simple/m.gif"></td>
+    <td><img src="simple/ma.gif"></td>
+    <td><img src="simple/me.gif"></td>
+    <td bgcolor="pink"><img src="simple/mi.gif"></td>
+    <td><img src="simple/mo.gif"></td>
+    <td><img src="simple/mu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>n</th>
+    <td><img src="simple/n.gif"></td>
+    <td><img src="simple/na.gif"></td>
+    <td><img src="simple/ne.gif"></td>
+    <td bgcolor="pink"><img src="simple/ni.gif"></td>
+    <td><img src="simple/no.gif"></td>
+    <td><img src="simple/nu.gif"></td>
+  </tr>
+</table>
+
+<br>
+
+<h3>The Modulo Operator</h3>
+
+<p align="justify">
+Taking the modulo operator a step further we can apply it as a true pattern
+operator. This becomes useful when working with more complex patterns, for
+example:
+<dir>
+/^(&lt;some very lengthy and complex regex&gt;)%4$/
+</dir>
+would indicate that we want the
+last
+element in the expression within the parenthesis to be a 4<sup>th</sup>
+form syllable.
+Admittedly we could have probably ended the regex with a [:%4:] class
+had we tried a bit harder and not been seduced by the convenience of
+the syntax.
+The real power of the modulo operator comes out when we want to specify
+ranges of acceptable forms.  To demonstrate range matching consider the
+pattern "[<img src="simple/l.gif"><img src="simple/m.gif">]%{3,4}", the
+expected matches are indicated in our next table:
+</p>
+
+<table border>
+  <tr align="center">
+    <th colspan="7">[<img src="simple/l.gif"><img src="simple/m.gif">]%{3,4}</th>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <th>+</th>
+    <th>a</th>
+    <th>e</th>
+    <th>i</th>
+    <th>o</th>
+    <th>u</th>
+  </tr>
+  <tr align="center">
+    <th>+</th>
+    <td><img src="simple/_.gif"></td>
+    <td><img src="simple/a.gif"></td>
+    <td><img src="simple/e.gif"></td>
+    <td><img src="simple/i.gif"></td>
+    <td><img src="simple/o.gif"></td>
+    <td><img src="simple/u.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>d</th>
+    <td><img src="simple/d.gif"></td>
+    <td><img src="simple/da.gif"></td>
+    <td><img src="simple/de.gif"></td>
+    <td><img src="simple/di.gif"></td>
+    <td><img src="simple/do.gif"></td>
+    <td><img src="simple/du.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>l</th>
+    <td><img src="simple/l.gif"></td>
+    <td><img src="simple/la.gif"></td>
+    <td bgcolor="pink"><img src="simple/le.gif"></td>
+    <td bgcolor="pink"><img src="simple/li.gif"></td>
+    <td><img src="simple/lo.gif"></td>
+    <td><img src="simple/lu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>m</th>
+    <td><img src="simple/m.gif"></td>
+    <td><img src="simple/ma.gif"></td>
+    <td bgcolor="pink"><img src="simple/me.gif"></td>
+    <td bgcolor="pink"><img src="simple/mi.gif"></td>
+    <td><img src="simple/mo.gif"></td>
+    <td><img src="simple/mu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>n</th>
+    <td><img src="simple/n.gif"></td>
+    <td><img src="simple/na.gif"></td>
+    <td><img src="simple/ne.gif"></td>
+    <td><img src="simple/ni.gif"></td>
+    <td><img src="simple/no.gif"></td>
+    <td><img src="simple/nu.gif"></td>
+  </tr>
+</table>
+
+<p>
+Repeating with the slightly more complex pattern "[<img src="simple/d.gif"><img src="simple/m.gif">-<img src="simple/n.gif">]%{2,4-6}":
+</p>
+
+<table border>
+  <tr align="center">
+    <th colspan="7">[<img src="simple/d.gif"><img src="simple/m.gif">-<img src="simple/n.gif">]%{2,4-6}</th>
+  </tr>
+  <tr align="center">
+    <td>&nbsp;</td>
+    <th>+</th>
+    <th>a</th>
+    <th>e</th>
+    <th>i</th>
+    <th>o</th>
+    <th>u</th>
+  </tr>
+  <tr align="center">
+    <th>+</th>
+    <td><img src="simple/_.gif"></td>
+    <td><img src="simple/a.gif"></td>
+    <td><img src="simple/e.gif"></td>
+    <td><img src="simple/i.gif"></td>
+    <td><img src="simple/o.gif"></td>
+    <td><img src="simple/u.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>d</th>
+    <td><img src="simple/d.gif"></td>
+    <td bgcolor="pink"><img src="simple/da.gif"></td>
+    <td><img src="simple/de.gif"></td>
+    <td bgcolor="pink"><img src="simple/di.gif"></td>
+    <td bgcolor="pink"><img src="simple/do.gif"></td>
+    <td bgcolor="pink"><img src="simple/du.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>l</th>
+    <td><img src="simple/l.gif"></td>
+    <td><img src="simple/la.gif"></td>
+    <td><img src="simple/le.gif"></td>
+    <td><img src="simple/li.gif"></td>
+    <td><img src="simple/lo.gif"></td>
+    <td><img src="simple/lu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>m</th>
+    <td><img src="simple/m.gif"></td>
+    <td bgcolor="pink"><img src="simple/ma.gif"></td>
+    <td><img src="simple/me.gif"></td>
+    <td bgcolor="pink"><img src="simple/mi.gif"></td>
+    <td bgcolor="pink"><img src="simple/mo.gif"></td>
+    <td bgcolor="pink"><img src="simple/mu.gif"></td>
+  </tr>
+  <tr align="center">
+    <th>n</th>
+    <td><img src="simple/n.gif"></td>
+    <td bgcolor="pink"><img src="simple/na.gif"></td>
+    <td><img src="simple/ne.gif"></td>
+    <td bgcolor="pink"><img src="simple/ni.gif"></td>
+    <td bgcolor="pink"><img src="simple/no.gif"></td>
+    <td bgcolor="pink"><img src="simple/nu.gif"></td>
+  </tr>
+</table>
+
+<p>Equivalently we could have expressed the pattern in the negative form as 
+"[<img src="simple/d.gif"><img src="simple/m.gif">-<img src="simple/n.gif">]%{^1,3}":
+</p>
+
+<p align="justify">
+Pattern transliterations and substitutions analogous to changing specified "cases"
+could also be performed by employing the modulo operator as well:
+</p>
+
+<pre>
+	 tr/%{1-3}/%{4-6}/;
+and
+	 $word =~ s/%7([=<img src="simple/d.gif">=])/%2$1/g;
+</pre>
+
+<h3>Further Reading</h3>
+
+<p align="justify">
+The goal of this essay was to present the case for syllabic character
+classes and pattern matching utilities by working with an abstract and
+very simple syllabary.  Recall that our simple syllabary is a special
+case of an open syllabary, sufficient for laying the ground work for
+later working with full CVC syllabaries and syllabaries applying tones
+such as Yi.  Working with a true syllabary and the localized rules that
+apply to it brings out more subtle levels of complexity that we have
+only touched on.  Thoughts on applying the approach to syllabic regular
+expressions applied to Ethiopic script is
+<a href="EthiopicClasses.html">available here.</a>
+</p>
+
+<hr>
+
+</body>
+</html>

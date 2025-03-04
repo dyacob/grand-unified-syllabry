@@ -1,0 +1,54 @@
+#
+#  Circled Katakana:  U+32D0 - U+32FE
+#
+#  Circled Katakana has:
+#    10 syllabic classes in 5 forms.
+#    12 consonant bases in 6 vowels.
+#
+32D0;  CIRCLED KATAKANA A;  32D0;  1;  ;  a;  ;  
+32D1;  CIRCLED KATAKANA I;  32D0;  2;  ;  i;  ;  
+32D2;  CIRCLED KATAKANA U;  32D0;  3;  ;  u;  ;  
+32D3;  CIRCLED KATAKANA E;  32D0;  4;  ;  e;  ;  
+32D4;  CIRCLED KATAKANA O;  32D0;  5;  ;  o;  ;  
+32D5;  CIRCLED KATAKANA KA;  32D5;  1;  k;  a;  ;  
+32D6;  CIRCLED KATAKANA KI;  32D5;  2;  k;  i;  ;  
+32D7;  CIRCLED KATAKANA KU;  32D5;  3;  k;  u;  ;  
+32D8;  CIRCLED KATAKANA KE;  32D5;  4;  k;  e;  ;  
+32D9;  CIRCLED KATAKANA KO;  32D5;  5;  k;  o;  ;  
+32DA;  CIRCLED KATAKANA SA;  32DA;  1;  s;  a;  ;  
+32DB;  CIRCLED KATAKANA SI;  32DA;  2;  s;  <02B8>i;  ;  
+32DC;  CIRCLED KATAKANA SU;  32DA;  3;  s;  u;  ;  
+32DD;  CIRCLED KATAKANA SE;  32DA;  4;  s;  e;  ;  
+32DE;  CIRCLED KATAKANA SO;  32DA;  5;  s;  o;  ;  
+32DF;  CIRCLED KATAKANA TA;  32DF;  1;  t;  <02B8>i;  ;  
+32E0;  CIRCLED KATAKANA TI;  32DF;  2;  <02A6>;  i;  ;  
+32E1;  CIRCLED KATAKANA TU;  32DF;  3;  <02A6>;  u;  ;  
+32E2;  CIRCLED KATAKANA TE;  32DF;  4;  t;  e;  ;  
+32E3;  CIRCLED KATAKANA TO;  32DF;  5;  t;  o;  ;  
+32E4;  CIRCLED KATAKANA NA;  32E4;  1;  n;  a;  ;  
+32E5;  CIRCLED KATAKANA NI;  32E4;  2;  n;  i;  ;  
+32E6;  CIRCLED KATAKANA NU;  32E4;  3;  n;  u;  ;  
+32E7;  CIRCLED KATAKANA NE;  32E4;  4;  n;  e;  ;  
+32E8;  CIRCLED KATAKANA NO;  32E4;  5;  n;  o;  ;  
+32E9;  CIRCLED KATAKANA HA;  32E9;  1;  <0278>;  a;  ;  
+32EA;  CIRCLED KATAKANA HI;  32E9;  2;  h;  <02B8>i;  ;  
+32EB;  CIRCLED KATAKANA HU;  32E9;  3;  h;  u;  ;  
+32EC;  CIRCLED KATAKANA HE;  32E9;  4;  h;  e;  ;  
+32ED;  CIRCLED KATAKANA HO;  32E9;  5;  h;  o;  ;  
+32EE;  CIRCLED KATAKANA MA;  32EE;  1;  m;  a;  ;  
+32EF;  CIRCLED KATAKANA MI;  32EE;  2;  m;  i;  ;  
+32F0;  CIRCLED KATAKANA MU;  32EE;  3;  m;  u;  ;  
+32F1;  CIRCLED KATAKANA ME;  32EE;  4;  m;  e;  ;  
+32F2;  CIRCLED KATAKANA MO;  32EE;  5;  m;  o;  ;  
+32F3;  CIRCLED KATAKANA YA;  32F3;  1;  j;  a;  ;  
+32F4;  CIRCLED KATAKANA YU;  32F3;  2;  j;  u;  ;  
+32F5;  CIRCLED KATAKANA YO;  32F3;  3;  j;  o;  ;  
+32F6;  CIRCLED KATAKANA RA;  32F6;  1;  r;  a;  ;  
+32F7;  CIRCLED KATAKANA RI;  32F6;  2;  r;  i;  ;  
+32F8;  CIRCLED KATAKANA RU;  32F6;  3;  r;  u;  ;  
+32F9;  CIRCLED KATAKANA RE;  32F6;  4;  r;  e;  ;  
+32FA;  CIRCLED KATAKANA RO;  32F6;  5;  r;  o;  ;  
+32FB;  CIRCLED KATAKANA WA;  32FB;  1;  w;  a;  ;  
+32FC;  CIRCLED KATAKANA WI;  32FB;  2;  w;  i;  ;  
+32FD;  CIRCLED KATAKANA WE;  32FB;  4;  w;  e;  ;  
+32FE;  CIRCLED KATAKANA WO;  32FB;  5;  w;  o;  ;  
