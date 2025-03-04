@@ -3,6 +3,6 @@ The Grand Unified Syllabary project (GUS) aims to map all syllabaries supported 
 
 
 ## Status
-This is a transfer of original [SourceForge project](https://sourceforge.net/projects/syllabary/) created on April 4, 2001.
+This is a transfer of original [SourceForge project](https://sourceforge.net/projects/syllabary/) created on August 8, 2001.
 
 A small companion [website](https://syllabary.sourceforge.net/) was also created for the original project.
